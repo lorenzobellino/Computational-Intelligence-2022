@@ -6,7 +6,7 @@ def check_goal(current_bag,goal):
     flat_list = [item for sublist in current_bag for item in sublist]
     return set(goal) == set(flat_list)
 
-N = 500
+N = 10
 seed = 42
 def problem(N, seed=None):
     random.seed(seed)
@@ -25,7 +25,10 @@ def search(blocks,goal):
         c_bag, available_blocks = state
 
         if(check_goal(c_bag,goal)):
-            logging.info("Found solution after %d iterations",n)
+            #numbers = len(set([item for sublist in c_bag for item in sublist]))
+            # numbers = len([item for sublist in c_bag for item in sublist])
+            numbers = sum([len(_) for _ in c_bag])
+            logging.info(f"\nFound solution after {n} iterations\nThe solution contains {numbers} numbers",)
             break
         for i, object in enumerate(available_blocks):
             new_state = (
