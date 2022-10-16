@@ -1,0 +1,462 @@
+
+N = 5, threshold = 0
+
+explored state: 4
+Time: 1989600 ns
+the weight of the solution is: 10
+
+N = 5, threshold = 0.1
+
+explored state: 4
+Time: 675200 ns
+the weight of the solution is: 6
+
+N = 5, threshold = 0.2
+
+explored state: 4
+Time: 836000 ns
+the weight of the solution is: 6
+
+N = 5, threshold = 0.3
+
+explored state: 4
+Time: 545800 ns
+the weight of the solution is: 6
+
+N = 5, threshold = 0.4
+
+explored state: 4
+Time: 1403100 ns
+the weight of the solution is: 6
+
+N = 5, threshold = 0.5
+
+explored state: 4
+Time: 913500 ns
+the weight of the solution is: 6
+
+N = 5, threshold = 0.6
+
+explored state: 8
+Time: 424600 ns
+the weight of the solution is: 5
+
+N = 5, threshold = 0.7
+
+explored state: 8
+Time: 459000 ns
+the weight of the solution is: 5
+
+N = 5, threshold = 0.8
+
+explored state: 8
+Time: 387200 ns
+the weight of the solution is: 5
+
+N = 5, threshold = 0.9
+
+explored state: 8
+Time: 376800 ns
+the weight of the solution is: 5
+
+N = 5, threshold = 1
+
+explored state: 8
+Time: 493800 ns
+the weight of the solution is: 5
+
+N = 10, threshold = 0
+
+explored state: 3
+Time: 396300 ns
+the weight of the solution is: 19
+
+N = 10, threshold = 0.1
+
+explored state: 3
+Time: 385000 ns
+the weight of the solution is: 19
+
+N = 10, threshold = 0.2
+
+explored state: 3
+Time: 507600 ns
+the weight of the solution is: 19
+
+N = 10, threshold = 0.3
+
+explored state: 16
+Time: 545500 ns
+the weight of the solution is: 16
+
+N = 10, threshold = 0.4
+
+explored state: 17
+Time: 493300 ns
+the weight of the solution is: 13
+
+N = 10, threshold = 0.5
+
+explored state: 17
+Time: 508100 ns
+the weight of the solution is: 13
+
+N = 10, threshold = 0.6
+
+explored state: 17
+Time: 594100 ns
+the weight of the solution is: 13
+
+N = 10, threshold = 0.7
+
+explored state: 39
+Time: 657500 ns
+the weight of the solution is: 11
+
+N = 10, threshold = 0.8
+
+explored state: 52
+Time: 721400 ns
+the weight of the solution is: 10
+
+N = 10, threshold = 0.9
+
+explored state: 52
+Time: 852300 ns
+the weight of the solution is: 10
+
+N = 10, threshold = 1
+
+explored state: 52
+Time: 1526700 ns
+the weight of the solution is: 10
+
+N = 20, threshold = 0
+
+explored state: 5
+Time: 456100 ns
+the weight of the solution is: 49
+
+N = 20, threshold = 0.1
+
+explored state: 5
+Time: 407400 ns
+the weight of the solution is: 41
+
+N = 20, threshold = 0.2
+
+explored state: 17
+Time: 595400 ns
+the weight of the solution is: 38
+
+N = 20, threshold = 0.3
+
+explored state: 45
+Time: 779700 ns
+the weight of the solution is: 35
+
+N = 20, threshold = 0.4
+
+explored state: 41
+Time: 1037900 ns
+the weight of the solution is: 32
+
+N = 20, threshold = 0.5
+
+explored state: 41
+Time: 1628200 ns
+the weight of the solution is: 32
+
+N = 20, threshold = 0.6
+
+explored state: 69
+Time: 1513100 ns
+the weight of the solution is: 29
+
+N = 20, threshold = 0.7
+
+explored state: 66
+Time: 947500 ns
+the weight of the solution is: 24
+
+N = 20, threshold = 0.8
+
+explored state: 66
+Time: 994600 ns
+the weight of the solution is: 24
+
+N = 20, threshold = 0.9
+
+explored state: 66
+Time: 1068400 ns
+the weight of the solution is: 24
+
+N = 20, threshold = 1
+
+explored state: 66
+Time: 1589400 ns
+the weight of the solution is: 24
+
+N = 50, threshold = 0
+
+explored state: 9
+Time: 1020200 ns
+the weight of the solution is: 209
+
+N = 50, threshold = 0.1
+
+explored state: 9
+Time: 1137000 ns
+the weight of the solution is: 148
+
+N = 50, threshold = 0.2
+
+explored state: 219
+Time: 3128500 ns
+the weight of the solution is: 97
+
+N = 50, threshold = 0.3
+
+explored state: 384
+Time: 5766200 ns
+the weight of the solution is: 87
+
+N = 50, threshold = 0.4
+
+explored state: 455
+Time: 6234700 ns
+the weight of the solution is: 84
+
+N = 50, threshold = 0.5
+
+explored state: 591
+Time: 9004600 ns
+the weight of the solution is: 77
+
+N = 50, threshold = 0.6
+
+explored state: 611
+Time: 7903300 ns
+the weight of the solution is: 77
+
+N = 50, threshold = 0.7
+
+explored state: 611
+Time: 8011500 ns
+the weight of the solution is: 77
+
+N = 50, threshold = 0.8
+
+explored state: 615
+Time: 9206200 ns
+the weight of the solution is: 76
+
+N = 50, threshold = 0.9
+
+explored state: 818
+Time: 12965300 ns
+the weight of the solution is: 76
+
+N = 50, threshold = 1
+
+explored state: 832
+Time: 12362000 ns
+the weight of the solution is: 76
+
+N = 100, threshold = 0
+
+explored state: 10
+Time: 3092600 ns
+the weight of the solution is: 461
+
+N = 100, threshold = 0.1
+
+explored state: 433
+Time: 11927200 ns
+the weight of the solution is: 273
+
+N = 100, threshold = 0.2
+
+explored state: 441
+Time: 13722600 ns
+the weight of the solution is: 236
+
+N = 100, threshold = 0.3
+
+explored state: 924
+Time: 27783000 ns
+the weight of the solution is: 207
+
+N = 100, threshold = 0.4
+
+explored state: 1199
+Time: 34778900 ns
+the weight of the solution is: 190
+
+N = 100, threshold = 0.5
+
+explored state: 1035
+Time: 33608000 ns
+the weight of the solution is: 172
+
+N = 100, threshold = 0.6
+
+explored state: 1984
+Time: 61151600 ns
+the weight of the solution is: 184
+
+N = 100, threshold = 0.7
+
+explored state: 2061
+Time: 62286400 ns
+the weight of the solution is: 190
+
+N = 100, threshold = 0.8
+
+explored state: 2853
+Time: 89086600 ns
+the weight of the solution is: 181
+
+N = 100, threshold = 0.9
+
+explored state: 2908
+Time: 92601600 ns
+the weight of the solution is: 181
+
+N = 100, threshold = 1
+
+explored state: 2908
+Time: 92342400 ns
+the weight of the solution is: 181
+
+N = 500, threshold = 0
+
+explored state: 12
+Time: 16853400 ns
+the weight of the solution is: 2637
+
+N = 500, threshold = 0.1
+
+explored state: 5029
+Time: 3544816200 ns
+the weight of the solution is: 1505
+
+N = 500, threshold = 0.2
+
+explored state: 10305
+Time: 7327026500 ns
+the weight of the solution is: 1504
+
+N = 500, threshold = 0.3
+
+explored state: 10600
+Time: 7914402400 ns
+the weight of the solution is: 1324
+
+N = 500, threshold = 0.4
+
+explored state: 10600
+Time: 8010035400 ns
+the weight of the solution is: 1324
+
+N = 500, threshold = 0.5
+
+explored state: 15959
+Time: 12540083000 ns
+the weight of the solution is: 1309
+
+N = 500, threshold = 0.6
+
+explored state: 15922
+Time: 12387334900 ns
+the weight of the solution is: 1325
+
+N = 500, threshold = 0.7
+
+explored state: 15690
+Time: 12590127700 ns
+the weight of the solution is: 1277
+
+N = 500, threshold = 0.8
+
+explored state: 17914
+Time: 15456271700 ns
+the weight of the solution is: 1244
+
+N = 500, threshold = 0.9
+
+explored state: 17914
+Time: 15274309400 ns
+the weight of the solution is: 1244
+
+N = 500, threshold = 1
+
+explored state: 17914
+Time: 16100412500 ns
+the weight of the solution is: 1244
+
+N = 1000, threshold = 0
+
+explored state: 15
+Time: 83452800 ns
+the weight of the solution is: 6440
+
+N = 1000, threshold = 0.1
+
+explored state: 16514
+Time: 52985653300 ns
+the weight of the solution is: 3510
+
+N = 1000, threshold = 0.2
+
+explored state: 24998
+Time: 82686521900 ns
+the weight of the solution is: 3058
+
+N = 1000, threshold = 0.3
+
+explored state: 32064
+Time: 112548628600 ns
+the weight of the solution is: 3094
+
+N = 1000, threshold = 0.4
+
+explored state: 25428
+Time: 102321144800 ns
+the weight of the solution is: 2759
+
+N = 1000, threshold = 0.5
+
+explored state: 35395
+Time: 127981543800 ns
+the weight of the solution is: 2971
+
+N = 1000, threshold = 0.6
+
+explored state: 35395
+Time: 114763987000 ns
+the weight of the solution is: 2971
+
+N = 1000, threshold = 0.7
+
+explored state: 39375
+Time: 129365915200 ns
+the weight of the solution is: 2871
+
+N = 1000, threshold = 0.8
+
+explored state: 39631
+Time: 131407443500 ns
+the weight of the solution is: 2871
+
+N = 1000, threshold = 0.9
+
+explored state: 39631
+Time: 130201369100 ns
+the weight of the solution is: 2871
+
+N = 1000, threshold = 1
+
+explored state: 39631
+Time: 131577475100 ns
+the weight of the solution is: 2871
