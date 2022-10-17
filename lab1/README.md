@@ -30,6 +30,9 @@ and that the total numbers of elements in all $L_{s_i}$ is minimum.
 * Sunday, October 16th 23:59:59 for the working solution
 * Sunday, October 23rd 23:59:59 for the peer reviews
 
+# Analyzing the Problem
+At first i tought about using one of the algorithm proposed in class such as depth first, breadth first, A* and similiar in order to find an exact solution but i quickly realized that this approach would take too much to compute. Instead I tried to find a good solution in a reasonable amount of time even if it was not a global best solution using a greedy approach. For smaller value of $N$ such as $N = 5$ and $N = 10$ my approach defenitly found a global best since the weight of my solution is the minimum possible. For bigger value of $N$ my algorithm is unable to check if the solution is the global best but i decided to make this tradeoff in order to reach a solution in a reasonable amount of time.
+
 # My proposed solution
 
 ## Reference and material
