@@ -10,30 +10,6 @@ SEED = 42
 logging.basicConfig(format="%(message)s", level=logging.INFO)
 
 
-class PrioritizedSet:
-    """A set with a priority
-    ...
-    Attributes :
-        priority : int
-            The inverse priority of the set (smaller is higer priority)
-        item : set
-            The set
-    """
-
-    def __init__(self, priority: int, set_: set):
-        self.priority = 100 - priority
-        self.item = set_
-
-    def __lt__(self, other):
-        return self.priority < other.priority
-
-    def __eq__(self, other):
-        return self.priority == other.priority
-
-    def __gt__(self, other):
-        return self.priority > other.priority
-
-
 def problem(N, seed=None):
     """Generate a random problem given a seed
     ...
@@ -68,6 +44,7 @@ def calculate_weight(result, goal, set_=set(), threshold=1):
     """
     # weight = the percentage of new elements covered by the set in respect to the state of the solution
     weight = ceil(100 * sum(x in goal - result for x in set_) / len(set_))
+    # return 0 if weight >= threshold * 100 else 100 - weight
     return 100 if weight >= threshold * 100 else weight
 
 
@@ -94,13 +71,13 @@ def search(sets, goal, N, threshold=1):
     sets = list(sets for sets, _ in groupby(sets))
 
     for element in sets:
-        options.put(PrioritizedSet(int(100 * len(element) / N), element))
-    result = [options.get().item]
+        options.put((100 - int(100 * len(element) / N), element))
+    result = [options.get()[1]]
     result_set = set().union(result[0])
     while result is not None and not result_set == goal:
         while not options.empty():
             discovered_state += 1
-            s = options.get().item
+            s = options.get()[1]
             coverage = calculate_weight(result_set, goal, s, threshold)
             if coverage == 100:
                 result.append(s)
@@ -109,12 +86,12 @@ def search(sets, goal, N, threshold=1):
                     options.put(unused.get())
                 break
             if coverage != 0:
-                unused.put(PrioritizedSet(coverage, s))
+                unused.put((100 - coverage, s))
         else:
             if unused.empty():
                 result = None
                 break
-            local_best = unused.get().item
+            local_best = unused.get()[1]
             result.append(local_best)
             result_set = result_set.union(local_best)
             while not unused.empty():
@@ -130,7 +107,7 @@ def main():
         goal = set(_ for _ in range(n))
         logging.info(f"N = {n}")
         start_time_ns = perf_counter_ns()
-        result = search(sets, goal, n, threshold=0.5)
+        result = search(sets, goal, n, threshold=1)
         end_time_ns = perf_counter_ns()
         logging.info(f"Time: {end_time_ns-start_time_ns} ns")
         if result is None:
