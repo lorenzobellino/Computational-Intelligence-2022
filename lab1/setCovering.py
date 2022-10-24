@@ -72,12 +72,12 @@ def search(sets, goal, N, threshold=1):
 
     for element in sets:
         options.put((100 - int(100 * len(element) / N), element))
-    result = [options.get()[1]]
+    result = [options.get()[-1]]
     result_set = set().union(result[0])
     while result is not None and not result_set == goal:
         while not options.empty():  # until i have options extract an element
             discovered_state += 1
-            s = options.get()[1]
+            s = options.get()[-1]
             coverage = calculate_weight(result_set, goal, s, threshold)
             if coverage == 100:  # if all the elements in the set are new to the solution
                 result.append(s)  # add it to the solution
@@ -91,7 +91,7 @@ def search(sets, goal, N, threshold=1):
             if unused.empty():  # if there are no unused sets a result can not be reached
                 result = None
                 break
-            local_best = unused.get()[1]  # extract the locally best unused set
+            local_best = unused.get()[-1]  # extract the locally best unused set
             result.append(local_best)  # append it to the solution
             result_set = result_set.union(local_best)
             while not unused.empty():
