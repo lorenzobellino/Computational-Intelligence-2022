@@ -82,3 +82,25 @@ is deterministic. ranks all of the individual based on their fitness and select 
     - *Selection* : choose parents
     - *Apply genetic operation* : crossover and mutation
     - *Mutation Rate* : The offspring can be slightly modified after
+
+
+.....
+
+27/10
+first 30 minutes of lesson you were late
+...
+
+## Population Topology
+1. **Panmittic** : all individuals are connected to all other individuals
+2. **Lattice** : all individuals are connected to their neighbours
+
+## Termination / Stopping Condition
+1. **Steady state** : stop when the fitness of the best individual doesn't change for a certain number of generations
+2. **Wall clock time** : stop when a certain amount of time has passed (usefull in industrial application)
+3. **Best Solution Found** : 
+4. **Total number of evaluation** : stop when a certain number of fitness evaluations has been performed
+5. **Number of generations** : stop when a certain number of generations has been performed
+
+## One Max Problem
+is a problem where you have a string of 0 and 1 and you have to maximize the number of 1 in the string. It is a problem that can be solved by a simple algorithm, but it is a good problem to test the performance of a GA.
+-
