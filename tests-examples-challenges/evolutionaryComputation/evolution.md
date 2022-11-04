@@ -103,4 +103,63 @@ first 30 minutes of lesson you were late
 
 ## One Max Problem
 is a problem where you have a string of 0 and 1 and you have to maximize the number of 1 in the string. It is a problem that can be solved by a simple algorithm, but it is a good problem to test the performance of a GA.
--
+
+
+
+
+## TSP
+Travelling Salesman Problem
+weighted fully connected graph, i want to find a path that goes to all different vertexes and come back to the starting point. The path has to be the shortest possible.
+
+step to design the solution
+1. **Representation** : how to represent the solution
+2. where the information is stored
+    - **order**
+    - **sequence**
+    - **other**
+[0,1,2,3,4,5,6,7,8,9] a list of numbers that represent the order in which the vertexes are visited
+3. **No aliases** : the solution has to be unique
+$[0,1,2,3,4] == [1,2,3,4,0]$
+$[0,1,2,3,4] == [0,4,3,2,1]$
+this types of sulution should be avoided since they are the same solution. to avoid this we can fix the starting city and the starting direction. this way we can avoid the aliases.
+4. **genetic operations** : how to create a new solution from 2 parents
+    - **mutation** : change the value of a gene
+    - **crossover** : mix the value of a gene from 2 parents or more
+5. **Survival selection** : how to select the best solution
+6. **Sintactillay correct solutions** : the solution has to be valid
+
+The *INFORMATION* lies in the edge of the list, meaning that $[0,1,2]$ $0$ and $1$ are connected, $1$ and $2$ are connected, $2$ and $0$ are connected in that order. 
+#### MUTATION
+permutations based mutation
+$[0,1,2,3,4] \rightarrow [0,1,3,2,4]$
+$[0,1,2,3,4] \rightarrow [0,4,3,2,1]$
+$[0,1,2,3,4] \rightarrow [0,4,2,3,1]$
+
+#### CROSSOVER
+*One Cut Crossovers*
+*Two Cut Crossovers*
+*infeasable solutions*
+
+
+#### OTHER ALGOS
+if trinagula inequality is verified we can apply[kKerningan Lin Algorithm](https://en.wikipedia.org/wiki/Kernighan%E2%80%93Lin_algorithm)
+
+
+## GA VS ES
+if you can use **ES** use it or better if you can use **AUTOGRAD** if you can differentiate the function and calculate the gradient. In other cases uses **GA** but be carefull beacuse you will encounter some problems! start with a random mutation hillclimber and then move from it tryng to find a feasable crossover or mutation for the population and so on.
+
+## BINARY REPRESENTATION
+**gray coding** is a way to represent binary numbers in a way that the distance between 2 numbers is the same as the distance between the binary representation of the 2 numbers. this is useful because it is easier to calculate the distance between 2 numbers in binary representation than in decimal representation.
+
+## INTEGER REPRESENTATION
+fixed lenght vs variable lenght
+discrete vs categorical values
+
+
+### Random resetting
+the allele in a random locus is replaced with a random value
+### Creep mutation
+the allele in a random locus is replaced with a random value in a small range around the original value (the range is small or large depending on the problem). it can be applied only if the values are discrete and can be ordered and sorted.
+
+### where te information is stored
+1 
