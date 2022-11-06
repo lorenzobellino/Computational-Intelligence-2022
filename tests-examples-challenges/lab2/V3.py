@@ -3,8 +3,8 @@ import logging
 from collections import namedtuple
 
 # PROBLEM_SIZE = 500
-POPULATION_SIZE = 300
-OFFSPRING_SIZE = 200
+POPULATION_SIZE = 1500
+OFFSPRING_SIZE = 1000
 
 NUM_GENERATIONS = 100
 
@@ -35,7 +35,9 @@ def fitness(genome, N, maxlen):
     fitness = covered - (duplicates * N / maxlen)
     # fitness = covered - duplicates
     # return (covered, -duplicates)
-    return (fitness, covered, -duplicates)
+    # if covered != N:
+    #     fitness -= 1
+    return fitness
 
 
 def tournament(population, tournament_size=2):
@@ -44,31 +46,28 @@ def tournament(population, tournament_size=2):
 
 def cross_over(g1, g2):
     """Crossover two genomes by slicing them at a random point"""
-    cut = random.randint(0, min(len(g1), len(g2)))
+    g = g1 + g2
+    point = random.randint(1, len(g) - 1)
     if random.random() < 0.5:
-        o = g1[:cut] + g2[cut:]
+        o = g[:point]
     else:
-        o = g2[:cut] + g1[cut:]
-    if random.random() < 0.3:
-        o = o[: -random.randint(1, len(o))]
+        o = g[point:]
     return o
 
 
 def mutation(g, all_lists):
     point = random.randint(0, len(g) - 1)
-    if random.random() < 0.3:
+    if random.random() < 0.7:
         o = g[:point] + (random.choice(all_lists),) + g[point:]
     else:
         o = g[:point] + (random.choice(all_lists),) + g[point + 1 :]
-    if random.random() < 0.3:
-        o = o[: -random.randint(1, len(o))]
     return o
 
 
 def generate_population(N, all_lists, maxlen):
     population = list()
     for genome in [
-        tuple([random.choice(all_lists) for _ in range(random.randint(1, N // 3))]) for _ in range(POPULATION_SIZE)
+        tuple([random.choice(all_lists) for _ in range(random.randint(1, N))]) for _ in range(POPULATION_SIZE)
     ]:
         population.append(Individual(genome, fitness(genome, N, maxlen)))
     return population
@@ -96,43 +95,34 @@ def combine(population, offspring):
     return population
 
 
-# def reshuflle(population, all_lists, N, maxlen):
-#     new_population = list()
-#     for i in population:
-#         new_len = random.randint(1, len(i.genome))
-#         # logging.info(f"new_len: {new_len}")
-#         try:
-#             o = tuple(random.sample(i.genome, new_len))
-#         except ValueError:
-#             logging.info(f"ValueError: {i.genome}")
-#             # o = i.genome
-#         new_population.append(Individual(o, fitness(o, N, maxlen)))
-#     return new_population
+def reshuflle(population, all_lists, N, maxlen):
+    new_population = list()
+    for i in population:
+        new_len = random.randint(1, len(i.genome))
+        # logging.info(f"new_len: {new_len}")
+        try:
+            o = tuple(random.sample(i.genome, new_len))
+        except ValueError:
+            logging.info(f"ValueError: {i.genome}")
+            # o = i.genome
+        new_population.append(Individual(o, fitness(o, N, maxlen)))
+    return new_population
 
 
 def setCovering(N, all_lists):
     """Solve the set covering problem using a genetic algorithm"""
     maxlen = sum(len(l) for l in all_lists)
     population = generate_population(N, all_lists, maxlen)
-    bestfit = population[0].fitness
-    steady = 0
+
     for individual in population:
         logging.debug(f"Genome: {individual.genome}, Fitness: {individual.fitness}")
 
     for _ in range(NUM_GENERATIONS):
         offspring = generate_offspring(population, all_lists, N, maxlen)
         population = combine(population, offspring)
-        steady += 1
-        if population[0].fitness > bestfit:
-            bestfit = population[0].fitness
-            steady = 0
-        if steady == 7:
-            # population = reshuflle(population, all_lists, N, maxlen)
-            population = combine(population, generate_population(N, all_lists, maxlen))
-            # population = generate_population(N, all_lists, maxlen)
-            steady = 0
-        # logging.info(f"Best fitness: {population[0].fitness}")
-        printPop(population)
+        logging.debug(f"best fitness: {population[0].fitness}")
+        # if population[0].fitness[0] == N and population[0].fitness[1] == 0:
+        #     break
 
     return population[0].genome
 
