@@ -138,9 +138,14 @@ def setCovering(N, all_lists):
 
 
 def main():
+    """
+    This is not the final solution since i was sick and i could not finish it
+    however this is a good proof of concept
+    but it still needs a lot of work i'm sorry for the mess
+    """
     solutions = list()
     for N in [5, 10, 20, 50, 100, 200, 500, 1000]:
-        # for N in [20]:
+
         solution = setCovering(N, problem(N, seed=42))
         solutions.append(solution)
         logging.info(
