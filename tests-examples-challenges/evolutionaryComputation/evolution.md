@@ -163,3 +163,101 @@ the allele in a random locus is replaced with a random value in a small range ar
 
 ### where te information is stored
 1 
+
+
+
+....
+
+
+
+# Genetic Programming
+# LISP
+## schema theorem
+..
+
+# Problem in genetic programming
+
+the offspring is not similar to the parent, using recombination sometimes the offspring is not similar
+This is why in GP we have large population and even larger offspring
+
+an other problem is bloat -> individual keep getting bigger and bigger
+gp is based on survial of the fattest instead of the fittest
+
+### Homologus crossover
+we are swapping trees only in similar part of the equation, we need to know which part of the genome we are working on. 
+we can freeze a tree and transform it into a model
+two individual are close if we can move from one to an other using a single mutation.
+
+### Bloat solutions
+plausible explanation includes:
+getting fatter is actually helping because the tree is able to tweak the prbability of mutation and crossover
+
+possible solution:
+**Introns** -> part of the genome that are not used by the program but are usefull to separate intresting parts from the genome, can stop the hitchhiking genes!
+**limiting operators that create fat offspring** -> in general doesn't work
+**ad-hoc operators** -> we can create a new operator that is able to remove the bloat trimming down the solution
+**check the result** -> lamarkism, often is a bad idea to put somthing that consider the fenotypes of the solution inside the genetic operators
+**penalty** -> fitness penalty, parsimony. but often we don't know the dimesion of a solution
+**fitness hole** ->  when comparing two indivisual first wwe decide if we want to consider the fittness or the size, we can choose how much fitness or size are important. as a result we have kind of a hole in the fitness function where the fitness function doesn't work and instead we use something else
+
+
+# Multy Object evolution
+
+*Pareto front* -> the edge of the solution space
+not all pareto front are born equal, some are better than others
+
+**MSGA** --> state of the art in multi objective evolution
+
+
+# Promoting diversity in evolution
+## real world
+the dinstiction between species is not important because ov the divergence of character.
+small starting difference produce big difference in the offspring.
+
+## in computation
+the problem in evolutionary algorithm is that the population get similar and similar over time. this is a problem because we want to find the best solution and not the best solution in the population.
+often this is called *Premature Convergence* (the opposites of divergence of character)
+this is because in evolutionary algorithm we have a fitness function and not an environment.
+
+## Niches in EA
+nichinig: grouping similar individuals:
+- similar spatial position (island)
+- similar genotype (niching)
+- similar phenotype
+
+## measuring diversity
+- **fitness** -> usually trivial but not very good
+- **Phenotype** -> usually ad hoc solution
+- **Genotype** -> different genotype in the population, GP subtree frequency, edit distance, entropy end free energy
+
+
+### ISLAND MODEL
+the population is partitioned into sub population where only local interactions are allowed, periodically indivisuals are moved between sub populations. this is a good way to promote diversity in the population because different population may explore different parts of the search space. (don't forget that global interactions can be usefull!).
+ 
+ ### SEGREGATION
+ similar to island model but instead of move the population from one island to an other we try to merge two island lowering the selective pressure in the population.
+
+ ### CELLULAR EA
+ interactions are only possible between a specific subset of the population. 
+ fixed topology (lattice)
+ this is beacuse limiting interactions could defer the takeover of the population by clones of the fittest individual.
+
+ ### DETERMINISTIC CROWDING
+ i'm selecting 2 random indivisual and then the offspring is competing against the parents and in the end one of the parents is killed.
+ this is flexible niching with an implicit neighborhood whre parents and offspring occupy the same niche.
+
+ ### ALLOPATRIC SLECTION
+ where the whole offspring compete for the survival
+ his is also flexible niching with an implicit neighborhood without the need for evaluating the similarity.
+ this is a good idea because genetic operators that create a large offspring can be exploited without the risk for the offspring to invade the population.
+
+ ### FITNESS SHARING
+ scaling down the fitness of similar individual. flexible niching with explicit individuals.
+ if an individual is very strong a similar individual to a very strong one will have a lower fitness.
+ this is not easy because we have to evaluate the distance between individuals. often the distance is calculatet on the genotype.
+ this will reduce the attractiveness of higly dense areas
+
+ ### CLEARING
+ select a niche densly populated and we kill everyone except the champions.
+
+
