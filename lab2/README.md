@@ -16,7 +16,7 @@ The Problem is the same as Lab1 so it does not need introductions. My approach t
 
 ## Reference and material
 This solution was developed by myself but the beginning stages of the problem solving were brainstormed togheter with my peers after classes. The core of the algorithm is based on:
-1. the solution proposed by the professor to solve the [onemax problem](https://github.com/squillero/computational-intelligence/blob/master/2022-23/one-max.ipynb) 
+1. the solution proposed by the professor to solve the [onemax](https://github.com/squillero/computational-intelligence/blob/master/2022-23/one-max.ipynb) problem
 2. slides presented during lectures
 3. my notes that can be found [here](https://github.com/lorenzobellino/Computational-Intelligence-2022/blob/main/tests-examples-challenges/evolutionaryComputation/evolution.md)
 ## early stages of the solution

@@ -3,7 +3,7 @@
 
 ### LAB1
 #### Solution
-The original approach for the solution of lab1 is explained in the README [here](https://github.com/lorenzobellino/Computational-Intelligence-2022/blob/main/lab1/README.md)
+The original approach for the solution of **lab1** is explained in this [README](https://github.com/lorenzobellino/Computational-Intelligence-2022/blob/main/lab1/README.md)
 #### Updates after review
 After receiving the first review i tried to implement the suggestion proposed in te Issues of my peer, in particular i added:
 - Added some usefull comment in my code other than the readme in order to make it more readable and understandable
@@ -22,7 +22,7 @@ For this lab i reviewed:
 
 ### LAB2
 #### Solution
-The original approach for the solution of lab1 is explained in the README [here](https://github.com/lorenzobellino/Computational-Intelligence-2022/blob/main/lab2/README.md)
+The original approach for the solution of **lab2** is explained in this [README](https://github.com/lorenzobellino/Computational-Intelligence-2022/blob/main/lab2/README.md)
 #### Updates after review
 ```TODO```
 
