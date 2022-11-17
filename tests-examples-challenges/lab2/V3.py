@@ -12,6 +12,17 @@ DEBUG = False
 logging.basicConfig(level=logging.DEBUG if DEBUG else logging.INFO)
 
 Individual = namedtuple("Individual", ["genome", "fitness"])
+"""
+1000 GENERATIONS
+INFO:root: Solution for N=5: w=5 (bloat=0%)
+INFO:root: Solution for N=10: w=10 (bloat=0%)
+INFO:root: Solution for N=20: w=24 (bloat=20%)
+INFO:root: Solution for N=50: w=81 (bloat=62%)
+INFO:root: Solution for N=100: w=185 (bloat=85%)
+INFO:root: Solution for N=200: w=460 (bloat=130%)
+INFO:root: Solution for N=500: w=1,444 (bloat=189%)
+INFO:root: Solution for N=1,000: w=3,465 (bloat=246%)
+"""
 
 
 def printPop(population):
