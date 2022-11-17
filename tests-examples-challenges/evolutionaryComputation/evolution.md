@@ -261,3 +261,15 @@ the population is partitioned into sub population where only local interactions 
  select a niche densly populated and we kill everyone except the champions.
 
 
+ ...
+
+### Standard crowding
+new individuals replace the most similar individual in a random niche of size $CF$.
+we have to remember that fitness is not a good proxy to understand similarities between two individuals.
+
+
+### Lexicase selection
+before selection rearrange the components of the fitness and then compare the fitness lexicographically.
+this will push towards specialization but it is only aookicable when using an aggregate fitness
+
+
