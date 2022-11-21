@@ -38,39 +38,25 @@ def end_game(board):
         return True
 
 
-def main():
-    drawing = [[".", ".", "."], [".", ".", "."], [".", ".", "."]]
-    board = (set(), set())
-    if random.random() < 0.5:
-        move = int(input("your move: "))
-        while move > 9 or move < 0:
-            logging.info(f"invalid move")
-            move = int(input("your move: "))
-        board = (board[0], board[1] | {move})
-        drawing[move // 3][move % 3] = "O"
-    else:
-        logging.info(f"computer starts")
-    while not end_game(board):
-        logging.info(f"board: {board}")
-        move, val = minmax(board)
-        board = (board[0] | {move}, board[1])
-        drawing[move // 3][move % 3] = "X"
-        if not end_game(board):
-            logging.info(f"my move: {move}")
-            logging.info(f"board: {board}")
-            move = int(input("your move: "))
-            while {move} & board[1] or {move} & board[0] or move > 8 or move < 0:
-                logging.info(f"invalid move")
-                move = int(input("your move: "))
-            board = (board[0], board[1] | {move})
-            drawing[move // 3][move % 3] = "O"
-
-    logging.info(f"final board")
-    logging.info(f"X: {board[0]}")
-    logging.info(f"O: {board[1]}")
+def draw_board(drawing):
     logging.info(
         f"game-board:\n{' | '.join(drawing[0])}\n----------\n{' | '.join(drawing[1])}\n----------\n{' | '.join(drawing[2])}"
     )
+
+
+def choose_move(board):
+    move = int(input("your move: "))
+    while {move} & board[1] or {move} & board[0] or move > 8 or move < 0:
+        logging.info(f"invalid move")
+        move = int(input("your move: "))
+    return move
+
+
+def terminate(board, drawing):
+    logging.info(f"final board")
+    logging.info(f"X: {board[0]}")
+    logging.info(f"O: {board[1]}")
+    draw_board(drawing=drawing)
     w = eval_terminal(*board)
     if w == 0:
         logging.info(f"winner: game tied")
@@ -78,6 +64,32 @@ def main():
         logging.info(f"winner: X")
     else:
         logging.info(f"winner: O")
+
+
+def main():
+    drawing = [[".", ".", "."], [".", ".", "."], [".", ".", "."]]
+    board = (set(), set())
+    if random.random() < 0.5:
+        move = choose_move(board)
+        board = (board[0], board[1] | {move})
+        drawing[move // 3][move % 3] = "O"
+        draw_board(drawing)
+    else:
+        logging.info(f"computer starts")
+    while not end_game(board):
+        # logging.info(f"board: {board}")
+        move, val = minmax(board)
+        board = (board[0] | {move}, board[1])
+        drawing[move // 3][move % 3] = "X"
+        draw_board(drawing)
+        if not end_game(board):
+            # logging.info(f"my move: {move}")
+            # logging.info(f"board: {board}")
+            move = choose_move(board)
+            board = (board[0], board[1] | {move})
+            drawing[move // 3][move % 3] = "O"
+            draw_board(drawing)
+    terminate(board, drawing)
 
 
 if __name__ == "__main__":
