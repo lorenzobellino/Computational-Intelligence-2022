@@ -40,7 +40,7 @@ def end_game(board):
 
 def draw_board(drawing):
     logging.info(
-        f"game-board:\n{' | '.join(drawing[0])}\n----------\n{' | '.join(drawing[1])}\n----------\n{' | '.join(drawing[2])}"
+        f"\ngame-board:\n{' | '.join(drawing[0])}\n----------\n{' | '.join(drawing[1])}\n----------\n{' | '.join(drawing[2])}"
     )
 
 
