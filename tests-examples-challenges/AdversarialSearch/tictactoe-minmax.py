@@ -77,14 +77,11 @@ def main():
     else:
         logging.info(f"computer starts")
     while not end_game(board):
-        # logging.info(f"board: {board}")
         move, val = minmax(board)
         board = (board[0] | {move}, board[1])
         drawing[move // 3][move % 3] = "X"
         draw_board(drawing)
         if not end_game(board):
-            # logging.info(f"my move: {move}")
-            # logging.info(f"board: {board}")
             move = choose_move(board)
             board = (board[0], board[1] | {move})
             drawing[move // 3][move % 3] = "O"
