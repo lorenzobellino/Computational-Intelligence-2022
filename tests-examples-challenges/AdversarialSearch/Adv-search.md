@@ -41,3 +41,39 @@ Complexity:
 is done to decrease the search space.
 if you have an idea that is surely bad, ron't waste time to see how truly awfull it really is.
 we can prune the tree by not exploring the branches that are surely worse than the best move we have found so far.
+
+### Limith depth
+- **hard cutoff** -> we stop the search at a certain depth
+- **horizon effect** -> incorrectly estimate the value of a state by overlooking an event that is just beyond the depth limit
+    - *negativre horizon effect* -> delay an unavoidable conesquences
+    - *positive horizon effect* -> overestimate some mooves, behaviou is too greedy
+#### Quiescence search
+increae depth when evaluating volatile positions, but how can **volatile** and **quiet** positions be discriminated?
+we have to be able to understand when is needed to increase the depth of the search.
+
+### Other tecniques
+1. **hash table** -> store the value of a state so that it can be reused
+2. **forward pruning** -> if a state is already evaluated, we can prune the branch, avoid considering all possible moves. How likely is that a remaining move is better than the current best moves?
+3. **lookup table** -> store opening moves and endgames
+
+## Evaluation
+### Heuristic evaluation
+often we are not able to search until a terminal state so we need some sort of heuristic in order to come up with a way to evaluate a state. DeepBlue used 8K feature to avaluate a state.
+this is still better than nothing ab it works really well because of the amount of calculation that is done so high that it doesn't matter if the heuristic is not 100% precise.
+Some of the evaluated features can be also self adapted by the algorithm.
+### Machine learning
+the value of a position might be learned using ML techniques.
+
+# Chess and AI
+..
+
+# Stochastic games
+how can we introduce dice throwing inside the game tree?
+how to introduce uncertainty in the game tree?
+
+
+
+
+
+
+
