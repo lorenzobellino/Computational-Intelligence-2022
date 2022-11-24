@@ -71,9 +71,38 @@ the value of a position might be learned using ML techniques.
 how can we introduce dice throwing inside the game tree?
 how to introduce uncertainty in the game tree?
 
+we can add a layer in minmax in order to add uncertainty to the tree
+## Stochastic MinMax
+we have to minimize the expected reward -> the reward could be a weighted sum of the possible outcomes or maybe the reward should always be considered as the lowest possible value
 
+## imperfect information
+how i can handle a game where i do not have all the informations?
+we can treat uncertainty as randomness
 
+## stochastic SEARCH
+1. **deep minmax** -> can be unfeasable
+2. **monte Carlo simulation** -> applyed to random games
 
+## monte carlo tree search
+usefull in stochastic games but also in deterministic games
+having a minmax approach and at some point we stop the exaustive minmax and we start sampling and then backpropagate the information found during the sampling.
 
+# non zero sum games
+prisoner's dilemma
 
+# rule based systems
 
+# learning classifier systems
+rule based system that are learning the rules. it's not very used today but it had a preatty significant role in the past.
+there is an incredible link between LCS and reinforcement learning.
+we have a finite population of classifier (ruleset) as bitstrings. we also have a discovery component that is able to discover new rules and enhancing existing ones. in the end we need a preformance component or better a reinforcement component that is abel to assign some fitness to the ruleset.
+## michigan style
+OG style of LCS studied by holand
+## pittsburg style
+*Offline* learning -> evalutate all the systme inside the GA itself
+
+# LCS rules
+should work collaboratively
+the set of rules should cover all the important situations -> **coverage** is a very important issue
+only rules responsible for choosen decision should be rewarded/penalized
+lazy and inactive rules should be removed
