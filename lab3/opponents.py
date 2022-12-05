@@ -278,13 +278,13 @@ def five_parameters_player_nim_5_rand(state: Nim) -> Nimply:
     param state: Nim
     return: Nimply
     """
-    # 0%
+    # 5%
     genome = {
-        "alpha": -26.35512131500403,
-        "beta": 23.465697763003853,
-        "gamma": 49.28293415634256,
-        "delta": 27.694382678737473,
-        "epsilon": 18.560427680231275,
+        "alpha": 44.79077594400001,
+        "beta": 9.579669386437583,
+        "gamma": -5.209762203134689,
+        "delta": -9.489475946977137,
+        "epsilon": -31.18441371362716,
     }
     data = cook_data(state)
     res = (
