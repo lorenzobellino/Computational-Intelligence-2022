@@ -210,12 +210,13 @@ def human_player(state: Nim) -> Nimply:
     return Nimply(row, num_objects)
 
 
-def five_parameters_player(state: Nim) -> Nimply:
+def five_parameters_player_nim_5(state: Nim) -> Nimply:
     """
     My best player with 5 parameters
     param state: Nim
     return: Nimply
     """
+    # 60%
     genome = {
         "alpha": -42.5399485484396,
         "beta": 114.60961375796023,
@@ -243,17 +244,80 @@ def five_parameters_player(state: Nim) -> Nimply:
     return ply
 
 
-def four_parameters_player(state: Nim) -> Nimply:
+def four_parameters_player_nim_5(state: Nim) -> Nimply:
     """
     My best player with 4 parameters
     param state: Nim
     return: Nimply
     """
+    # 51%
     genome = {
         "alpha": 12.812770589035535,
         "beta": -16.051123920350758,
         "gamma": -0.20956437443764508,
         "delta": -8.234717910949916,
+    }
+    data = cook_data(state)
+    alpha = genome["alpha"]
+    beta = genome["beta"]
+    gamma = genome["gamma"]
+    delta = genome["delta"]
+
+    res = (
+        (a[0], abs(alpha * a[1] + beta * b[1] + gamma * c[1] + delta * d[1]))
+        for a, b, c, d in zip(data["and"], data["or"], data["sum"], data["sub"])
+    )
+    ply = min(res, key=lambda x: x[1])[0]
+
+    return ply
+
+
+def five_parameters_player_nim_5_rand(state: Nim) -> Nimply:
+    """
+    My best player with 5 parameters
+    param state: Nim
+    return: Nimply
+    """
+    # 0%
+    genome = {
+        "alpha": -26.35512131500403,
+        "beta": 23.465697763003853,
+        "gamma": 49.28293415634256,
+        "delta": 27.694382678737473,
+        "epsilon": 18.560427680231275,
+    }
+    data = cook_data(state)
+    res = (
+        (
+            a[0],
+            abs(
+                genome["alpha"] * a[1]
+                + genome["beta"] * b[1]
+                + genome["gamma"] * c[1]
+                + genome["delta"] * d[1]
+                + genome["epsilon"] * e[1]
+            ),
+        )
+        for a, b, c, d, e in zip(data["and"], data["or"], data["sum"], data["sub"], data["nand"])
+    )
+    ply, r = min(res, key=lambda x: x[1])
+    logging.info(f"res: {r}")
+
+    return ply
+
+
+def four_parameters_player_nim_5_rand(state: Nim) -> Nimply:
+    """
+    My best player with 4 parameters
+    param state: Nim
+    return: Nimply
+    """
+    # 5%
+    genome = {
+        "alpha": 15.945309194204931,
+        "beta": -3.2707966609771746,
+        "gamma": -25.708257470959275,
+        "delta": 14.81947128092396,
     }
     data = cook_data(state)
     alpha = genome["alpha"]
