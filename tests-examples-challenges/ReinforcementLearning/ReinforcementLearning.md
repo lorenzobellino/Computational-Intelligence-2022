@@ -59,3 +59,6 @@ $E_{\pi}$ is named **Q-value**
 
 
 
+1. random mutation hill climbing
+2. no populaition hillclimber
+3. evolutionary computation
