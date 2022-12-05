@@ -105,7 +105,7 @@ def main():
     res = 0
     while input() != "q":
         game += 1
-        res += evaluate(opponents.my_best_player, opponents.optimal_startegy)
+        res += evaluate(opponents.four_parameters_player, opponents.optimal_startegy)
         logging.info(f"my bes player won {res}/{game} = {res*100/game:.2f} % of the time")
         # input()
 

@@ -250,10 +250,10 @@ def four_parameters_player(state: Nim) -> Nimply:
     return: Nimply
     """
     genome = {
-        "alpha": 26.97877500272968,
-        "beta": 17.850212657051426,
-        "gamma": 11.554805573206878,
-        "delta": 8.903361191261782,
+        "alpha": 12.812770589035535,
+        "beta": -16.051123920350758,
+        "gamma": -0.20956437443764508,
+        "delta": -8.234717910949916,
     }
     data = cook_data(state)
     alpha = genome["alpha"]

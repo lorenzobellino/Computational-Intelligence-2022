@@ -185,7 +185,7 @@ def main():
     # ev = evaluate(opponents.my_best_player, opponents.optimal_startegy)
     # logging.info(f"Optimal vs My best: {ev}")
     # input()
-    import_population = False
+    import_population = True
 
     if import_population and os.path.exists("population.json"):
         with open("population.json", "r") as f:
