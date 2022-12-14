@@ -12,7 +12,6 @@ Nimply = namedtuple("Nimply", "row, num_objects")
 class Nim:
     def __init__(self, num_rows: int, k: int = None) -> None:
         self._rows = [i * 2 + 1 for i in range(num_rows)]
-        # self._rows = [i + 1 for i in range(num_rows)]
         self._k = k
 
     def __bool__(self):
@@ -20,6 +19,12 @@ class Nim:
 
     def __str__(self):
         return "<" + " ".join(str(_) for _ in self._rows) + ">"
+
+    def __hash__(self):
+        return hash(str(self))
+
+    def __eq__(self, other):
+        return str(self) == str(other)
 
     @property
     def rows(self) -> tuple:
@@ -84,6 +89,7 @@ def brute_force(state: Nim) -> dict:
 
 def optimal_startegy(state: Nim) -> Nimply:
     data = brute_force(state)
+    # logging.info(f"brute_force: {[bf for bf in data['brute_force'] if bf[1] == 0]}")
     return next((bf for bf in data["brute_force"] if bf[1] == 0), random.choice(data["brute_force"]))[0]
 
 
@@ -147,7 +153,12 @@ def human_player(state: Nim) -> Nimply:
     return Nimply(row, num_objects)
 
 
-def my_best_player(state: Nim) -> Nimply:
+def five_param_5(state: Nim) -> Nimply:
+    """
+    My best player with 5 parameters
+    param state: Nim
+    return: Nimply
+    """
     genome = {
         "alpha": -42.5399485484396,
         "beta": 114.60961375796023,
@@ -170,12 +181,12 @@ def my_best_player(state: Nim) -> Nimply:
         for a, b, c, d, e in zip(data["and"], data["or"], data["sum"], data["sub"], data["nand"])
     )
     ply, r = min(res, key=lambda x: x[1])
-    logging.info(f"res: {r}")
+    # logging.info(f"res: {r}")
 
     return ply
 
 
-def four_parameters_player(state: Nim) -> Nimply:
+def four_param_5(state: Nim) -> Nimply:
     """
     My best player with 4 parameters
     param state: Nim
@@ -188,6 +199,78 @@ def four_parameters_player(state: Nim) -> Nimply:
         "delta": -8.234717910949916,
     }
 
+    data = cook_data(state)
+    alpha = genome["alpha"]
+    beta = genome["beta"]
+    gamma = genome["gamma"]
+    delta = genome["delta"]
+
+    res = (
+        (a[0], abs(alpha * a[1] + beta * b[1] + gamma * c[1] + delta * d[1]))
+        for a, b, c, d in zip(data["and"], data["or"], data["sum"], data["sub"])
+    )
+    ply = min(res, key=lambda x: x[1])[0]
+
+    return ply
+
+
+def five_param_generalized(state: Nim) -> Nimply:
+    """
+    My best player with 5 parameters
+    param state: Nim
+    return: Nimply
+    """
+    genome = {
+        "alpha": 44.79077594400001,
+        "beta": 9.579669386437583,
+        "gamma": -5.209762203134689,
+        "delta": -9.489475946977137,
+        "epsilon": -31.18441371362716,
+    }
+    data = cook_data(state)
+    res = (
+        (
+            a[0],
+            abs(
+                genome["alpha"] * a[1]
+                + genome["beta"] * b[1]
+                + genome["gamma"] * c[1]
+                + genome["delta"] * d[1]
+                + genome["epsilon"] * e[1]
+            ),
+        )
+        for a, b, c, d, e in zip(data["and"], data["or"], data["sum"], data["sub"], data["nand"])
+    )
+    ply, r = min(res, key=lambda x: x[1])
+    # logging.info(f"res: {r}")
+
+    return ply
+
+
+def four_param_generalized(state: Nim) -> Nimply:
+    """
+    My best player with 4 parameters
+    param state: Nim
+    return: Nimply
+    """
+    # genome = {
+    #     "alpha": 14.325827789108999,
+    #     "beta": -5.726164045356429,
+    #     "gamma": -31.566080375138124,
+    #     "delta": 13.98406203443887,
+    # }
+    genome = {
+        "alpha": 15.945309194204931,
+        "beta": -3.2707966609771746,
+        "gamma": -25.708257470959275,
+        "delta": 14.81947128092396,
+    }
+    # genome = {
+    #     "alpha": -4.645104370303834,
+    #     "beta": 47.72918882837766,
+    #     "gamma": 43.87787924034255,
+    #     "delta": -24.54257046414698,
+    # }
     data = cook_data(state)
     alpha = genome["alpha"]
     beta = genome["beta"]
