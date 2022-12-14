@@ -21,6 +21,12 @@ class Nim:
     def __str__(self):
         return "<" + " ".join(str(_) for _ in self._rows) + ">"
 
+    def __hash__(self):
+        return hash(str(self))
+
+    def __eq__(self, other):
+        return str(self) == str(other)
+
     @property
     def rows(self) -> tuple:
         return tuple(self._rows)
