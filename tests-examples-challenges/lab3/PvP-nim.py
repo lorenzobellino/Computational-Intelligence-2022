@@ -18,7 +18,7 @@ Nimply = namedtuple("Nimply", "row, num_objects")
 logging.getLogger().setLevel(logging.DEBUG)
 
 NUM_MATCHES = 1
-NIM_SIZE = 5
+NIM_SIZE = 3
 POPULATION = 10
 NUM_GENERATIONS = 100
 OFFSPRING = 7
@@ -28,11 +28,11 @@ se puoi devi avere due righe alla stessa altezza
 """
 
 
-def evaluate(strategy: Callable, opponent=opponents.pure_random) -> float:
+def evaluate(strategy: Callable, opponent: Callable, game_size: int) -> float:
     strategy = (strategy, opponent)
     won = 0
     for _ in range(NUM_MATCHES):
-        nim = Nim(random.randint(5, 15))
+        nim = Nim(game_size)
         player = 0
         while nim:
 
@@ -48,10 +48,16 @@ def evaluate(strategy: Callable, opponent=opponents.pure_random) -> float:
 def main():
     game = 0
     res = 0
+    # strategys = (opponents.five_param_5, opponents.optimal_startegy)
+    strategys = (opponents.five_param_5, opponents.optimal_startegy)
+    logging.info(f"player 0 : {strategys[0].__name__}\nplayer 1 : {strategys[1].__name__}")
     while input() != "q":
         game += 1
-        res += evaluate(opponents.five_parameters_player_nim_5_rand, opponents.optimal_startegy)
-        logging.info(f"my bes player won {res}/{game} = {res*100/game:.2f} % of the time")
+        # game_size = random.randint(5, 12)
+        # game_size = NIM_SIZE
+        game_size = 5
+        res += evaluate(strategys[0], strategys[1], game_size)
+        logging.info(f"player 0 won {res} out of {game} games = {res*100/game:.02f}%")
 
 
 if __name__ == "__main__":
