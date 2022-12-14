@@ -44,7 +44,7 @@ def cook_status(state: Nim) -> dict:
         or_list.append((m, or_operation(tmp)))
         sum_list.append((m, sum(tmp.rows)))
         sub_list.append((m, sub_operation(tmp)))
-        # nand_list.append((m, nand_operation(tmp)))
+        nand_list.append((m, nand_operation(tmp)))
         # rshift_list.append((m, rshift_operation(tmp)))
         # lshift_list.append((m, lshift_operation(tmp)))
 
@@ -52,7 +52,7 @@ def cook_status(state: Nim) -> dict:
     cooked["or"] = or_list
     cooked["sum"] = sum_list
     cooked["sub"] = sub_list
-    # cooked["nand"] = nand_list
+    cooked["nand"] = nand_list
     # cooked["r-shift"] = rshift_list
     # cooked["l-shift"] = lshift_list
 
@@ -97,14 +97,16 @@ def nim_sum(state: Nim) -> int:
 def make_strategy(genome: dict) -> Callable:
     def evolvable(state: Nim) -> Nimply:
         data = cook_status(state)
+
         alpha = genome["alpha"]
         beta = genome["beta"]
         gamma = genome["gamma"]
         delta = genome["delta"]
+        epsilon = genome["epsilon"]
 
         res = (
-            (a[0], abs(alpha * a[1] + beta * b[1] + gamma * c[1] + delta * d[1]))
-            for a, b, c, d in zip(data["and"], data["or"], data["sum"], data["sub"])
+            (a[0], abs(alpha * a[1] + beta * b[1] + gamma * c[1] + delta * d[1] + epsilon * e[1]))
+            for a, b, c, d, e in zip(data["and"], data["or"], data["sum"], data["sub"], data["nand"])
         )
         ply = min(res, key=lambda x: x[1])[0]
 
@@ -136,7 +138,7 @@ def generate_population(dim: int) -> list:
             "beta": random.uniform(-10, 10),
             "gamma": random.uniform(-10, 10),
             "delta": random.uniform(-10, 10),
-            # "epsilon": random.uniform(-10, 10),
+            "epsilon": random.uniform(-10, 10),
         }
         strat = make_strategy(genome)
         eval = (
@@ -164,12 +166,23 @@ def generate_offspring(population: list, gen: int) -> list:
     for i in range(OFFSPRING):
         p = tournament(population)
 
-        p[2]["alpha"] += random.gauss(0, 10 / (gen + 1))
-        p[2]["beta"] += random.gauss(0, 10 / (gen + 1))
-        p[2]["gamma"] += random.gauss(0, 10 / (gen + 1))
-        p[2]["delta"] += random.gauss(0, 10 / (gen + 1))
+        p[2]["alpha"] += random.gauss(0, 20 / (gen + 1))
+        p[2]["beta"] += random.gauss(0, 20 / (gen + 1))
+        p[2]["gamma"] += random.gauss(0, 20 / (gen + 1))
+        p[2]["delta"] += random.gauss(0, 20 / (gen + 1))
+        p[2]["epsilon"] += random.gauss(0, 20 / (gen + 1))
+
+        # p[2]["alpha"] += random.gauss(0, 10 / (gen + 1))
+        # p[2]["beta"] += random.gauss(0, 10 / (gen + 1))
+        # p[2]["gamma"] += random.gauss(0, 10 / (gen + 1))
+        # p[2]["delta"] += random.gauss(0, 10 / (gen + 1))
         # p[2]["epsilon"] += random.gauss(0, 10 / (gen + 1))
 
+        # p[2]["alpha"] += random.uniform(-0.1, 0.1)
+        # p[2]["beta"] += random.uniform(-0.1, 0.1)
+        # p[2]["gamma"] += random.uniform(-0.1, 0.1)
+        # p[2]["delta"] += random.uniform(-0.1, 0.1)
+        # p[2]["epsilon"] += random.uniform(-0.1, 0.1)
         strat = make_strategy(p[2])
         eval = (
             evaluate(strat, opponents.optimal_startegy),
@@ -182,10 +195,10 @@ def generate_offspring(population: list, gen: int) -> list:
 
 
 def main():
-    import_population = False
+    import_population = True
 
-    if import_population and os.path.exists("populationV7.json"):
-        with open("populationV7.json", "r") as f:
+    if import_population and os.path.exists("populationV8.json"):
+        with open("populationV8.json", "r") as f:
             loaded_population = json.load(f)
             population = list()
             for i in loaded_population:
@@ -200,6 +213,7 @@ def main():
                 population.append((eval, strat, genome))
         logging.info("loaded initial population")
     else:
+        logging.info(f"generating initial population of {POPULATION} individuals")
         population = generate_population(POPULATION)
         logging.info("Generated initial population")
 
@@ -210,12 +224,12 @@ def main():
         population = combine(population, offspring)
         logging.info(f"best genome: {population[0][2]}")
         logging.info(f"best fitness: {population[0][0]}")
-        if population[0][0][0] > 40:
+        if population[0][0][0] > 20:
             break
 
     logging.info(f"best genome: {population[0][2]}")
 
-    with open("populationV7.json", "w") as f:
+    with open("populationV8.json", "w") as f:
         pop = {f"individual_{i:02}": {"fitness": p[0], "genome": p[2]} for i, p in enumerate(population)}
         json.dump(pop, f, indent=4)
     logging.info(f"saved population\nlength: {len(population)}")
