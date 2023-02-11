@@ -107,14 +107,14 @@ In order to evaluate the performance of the agent i tested it agains four differ
 3. **gabriele**: an agent that uses the same approach proposed by one of our colleagues
 4. **take_one_never_finish**: an agent that takes one object from a random row, if it can it will never remove the last object from a row
 
-Each opponent is played for a fixed number of matches $NUM_MATCHES$ and the number of victory with each component is saved in a tuple.
+Each opponent is played for a fixed number of matches **NUM_MATCHES** and the number of victory with each component is saved in a tuple.
 ```python
 eval = (
-                    evaluate(strat, opponents.optimal_startegy),
-                    evaluate(strat, opponents.pure_random),
-                    evaluate(strat, opponents.gabriele),
-                    evaluate(strat, opponents.take_one_never_finish),
-                )
+        evaluate(strat, opponents.optimal_startegy),
+        evaluate(strat, opponents.pure_random),
+        evaluate(strat, opponents.gabriele),
+        evaluate(strat, opponents.take_one_never_finish),
+        )
 ```
 
 #### Results and minor tweaks
@@ -169,3 +169,6 @@ An other aspect of the algorith used to speed up the process is the use of alpha
 If the player is minimizing means that given a state if there is a move that leads to a loss for the maximising player we don't need to check the other moves because the minimising player will choose the move that leads to the loss. a similar approach is used for the maximising player.
 
 My full algorithm implementation can be found [here](https://github.com/lorenzobellino/Computational-Intelligence-2022/tree/main/lab3/minmax.py)
+
+## Task 3.3
+### An agent using reinforcement learning
