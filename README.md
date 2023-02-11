@@ -31,3 +31,17 @@ In order to review the code produced by some of my peer i used the Issues tool p
 For this lab i reviewed:
 - [Enrico Magliano](https://github.com/EnricoMagliano/computational-intelligence/) using github Issues, my review can be found [here](https://github.com/EnricoMagliano/computational-intelligence/issues/5)
 - [Peppepelle99](https://github.com/Peppepelle99/ComputationalIntel2022_303999) using github Issues, my review can be found [here](https://github.com/Peppepelle99/ComputationalIntel2022_303999/issues/3)
+
+
+### LAB3
+#### Solution
+The approach for the solution of **lab3** is explained in this [README](https://github.com/lorenzobellino/Computational-Intelligence-2022/blob/main/lab3/README.md)
+
+#### Updates after review
+```TODO```
+
+#### Peer reviewing
+In order to review the code produced by some of my peer i used the Issues tool provided by github, suggesting some changes and improvements.
+For this lab i reviewed:
+- [Leonor Gomes](https://github.com/leonormgomes/Computational_Intelligence) creating a pull request since in the README asked to fix the ```minimax_pruning``` function, my pull request can be found [here](https://github.com/leonormgomes/Computational_Intelligence/pull/4)
+- [Omid Mahdavii](https://github.com/OmidMahdavii/Computational-Intelligence-Course) using github Issues, my review can be found [here](https://github.com/OmidMahdavii/Computational-Intelligence-Course/issues/4)
