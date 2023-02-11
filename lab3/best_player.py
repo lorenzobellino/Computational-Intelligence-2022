@@ -38,6 +38,7 @@ def cook_data(state: Nim) -> dict:
     data["sum"] = sum_list
     data["sub"] = sub_list
     data["nand"] = nand_list
+    # data["possible_moves"] = possible_moves
 
     return data
 
