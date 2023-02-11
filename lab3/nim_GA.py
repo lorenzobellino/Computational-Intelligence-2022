@@ -7,6 +7,7 @@ from typing import Callable
 
 import opponents
 from opponents import Nim
+from best_player import cook_data
 
 
 Nimply = namedtuple("Nimply", "row, num_objects")
@@ -22,8 +23,8 @@ OFFSPRING = 7
 
 def make_strategy(genome: dict) -> Callable:
     def evolvable(state: Nim) -> Nimply:
-        data = opponents.cook_data(state)
-
+        # data = opponents.cook_data(state)
+        data = cook_data(state)
         alpha = genome["alpha"]
         beta = genome["beta"]
         gamma = genome["gamma"]
