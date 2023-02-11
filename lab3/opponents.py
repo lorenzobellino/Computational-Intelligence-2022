@@ -48,6 +48,15 @@ class Nim:
         assert self._k is None or num_objects <= self._k
         self._rows[row] -= num_objects
 
+    def available_moves(self) -> list:
+        return [(r, o) for r, c in enumerate(self.rows) for o in range(1, c + 1) if self._k is None or o <= self._k]
+
+    def get_state_and_reward(self):
+        return self.rows, self.give_reward()
+
+    def give_reward(self):
+        return 1 if sum(self._rows) == 0 else 0
+
 
 def gabriele(state: Nim) -> Nimply:
     """
