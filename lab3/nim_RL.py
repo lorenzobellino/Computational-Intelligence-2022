@@ -2,12 +2,15 @@ from opponents import pure_random
 from RLAgent import *
 from collections import namedtuple
 from typing import Callable
+from opponents import rl_agent
 import logging
 import sys
+import json
 
 NIM_SIZE = 4
 NUM_MATCHES = 100
-TRAINING_TIME = 10000
+TRAINING_TIME = 50000
+SAVE_POLICY = True
 Nimply = namedtuple("Nimply", "row, num_objects")
 logging.getLogger().setLevel(logging.DEBUG)
 
@@ -34,7 +37,7 @@ if __name__ == "__main__":
     agent = Agent(nim, alpha=0.2, random_factor=0.5)
     opponent = pure_random
     print(f"training {0} / {TRAINING_TIME}", end="")
-    for i in range(TRAINING_TIME):
+    for t in range(TRAINING_TIME):
 
         stateCopy = deepcopy(nim)
         while stateCopy:
@@ -52,9 +55,16 @@ if __name__ == "__main__":
 
         agent.learn()
         sys.stdout.flush()
-        print(f"\rtraining {i+1} / {TRAINING_TIME}", end="")
+        print(f"\rtraining {t+1} / {TRAINING_TIME}", end="")
+        
+        if SAVE_POLICY and t%5000 == 0:
+            policy = agent.get_policy()
+            policy_str = {"".join(str(_) for _ in k): v for k, v in policy.items()}
+            json.dump(policy_str, open("policy.json", "w"))
 
     policy = agent.get_policy()
+
+
     print("\n")
     # policy = learning(nim)
     logging.debug("finished training\nstarting tests...")
@@ -63,32 +73,4 @@ if __name__ == "__main__":
         result = evaluate(RLAgent(policy), opponent)
         logging.info(f"after {NUM_MATCHES} matches, player 0 won {result} times ==> {result / NUM_MATCHES * 100}%")
     print("-------------------")
-    # nim = Nim()
-    # robot = Agent(nim, alpha=0.1, random_factor=0.4)
-    # moveHistory = []
-    # indices = []
 
-    # for i in range(5000):
-
-    #     while not nim:
-    #         state, _ = maze.get_state_and_reward()  # get the current state
-    #         state = nim.rows
-    #         choose an action (explore or exploit)
-    #         action = robot.choose_action(state, nim.available_moves())
-    #         nim.nimming(action)
-    #         maze.update_maze(action)  # update the maze according to the action
-
-    #         state, reward = nim.get_state_and_reward()  # get the new state and reward
-    #         state, reward = maze.get_state_and_reward()  # get the new state and reward
-    #         update the robot memory with state and reward
-    #         robot.update_state_history(state, reward)
-    #         if maze.steps > 1000:
-    #             # end the robot if it takes too long to find the goal
-    #             maze.robot_position = (5, 5)
-    #     robot.learn()  # robot should learn after every episode
-    #     get a history of number of steps taken to plot later
-    #     if i % 50 == 0:
-    #         print(f"{i}: {nim.steps}")
-    #         moveHistory.append(nim.steps)
-    #         indices.append(i)
-    #     nim = Nim()  # reinitialize the maze

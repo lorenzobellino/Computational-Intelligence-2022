@@ -1,9 +1,11 @@
 import logging
 import random
 import operator
+import json
 from collections import namedtuple
 from itertools import accumulate
 from copy import deepcopy
+from functools import cache
 
 
 Nimply = namedtuple("Nimply", "row, num_objects")
@@ -150,3 +152,26 @@ def human_player(state: Nim) -> Nimply:
     row = int(input("row: "))
     num_objects = int(input("num_objects: "))
     return Nimply(row, num_objects)
+
+@cache
+def cook_data(state: Nim) -> dict:
+    # print(f"rows: {state.rows}")
+    bf = []
+    data = {}
+    possible_moves = [(r, o) for r, c in enumerate(state.rows) for o in range(1, c + 1)]
+    for m in possible_moves:
+        tmp = deepcopy(state)
+        tmp.nimming(m)
+        # bf.append(tmp)
+        bf.append((m, tmp))
+    data["brute_force"] = bf
+    data["possible_moves"] = possible_moves
+
+    return data
+
+def rl_agent(state: Nim) -> Nimply:
+    possibleStates = cook_data(state)["brute_force"]
+    G = json.load(open("policy.json"))
+    G = {tuple(int(i) for i in k): v for k, v in G.items()}
+    ply = max(((s[0], G[s[1].rows]) for s in possibleStates if s[1].rows in G), key=lambda i: i[1])[0]
+    return Nimply(ply[0], ply[1])

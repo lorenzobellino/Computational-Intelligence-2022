@@ -207,3 +207,4 @@ def four_param_generalized(state: Nim) -> Nimply:
     ply = min(res, key=lambda x: x[1])[0]
 
     return ply
+
