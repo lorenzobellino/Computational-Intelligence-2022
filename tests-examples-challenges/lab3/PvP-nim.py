@@ -18,7 +18,7 @@ Nimply = namedtuple("Nimply", "row, num_objects")
 logging.getLogger().setLevel(logging.DEBUG)
 
 NUM_MATCHES = 1
-NIM_SIZE = 3
+NIM_SIZE = 5
 POPULATION = 10
 NUM_GENERATIONS = 100
 OFFSPRING = 7
@@ -49,7 +49,7 @@ def main():
     game = 0
     res = 0
     # strategys = (opponents.five_param_5, opponents.optimal_startegy)
-    strategys = (opponents.five_param_5, opponents.optimal_startegy)
+    strategys = (opponents.rl_agent, opponents.optimal_startegy)
     logging.info(f"player 0 : {strategys[0].__name__}\nplayer 1 : {strategys[1].__name__}")
     while input() != "q":
         game += 1

@@ -1,9 +1,11 @@
 import logging
 import random
 import operator
+import json
 from collections import namedtuple
 from itertools import accumulate
 from copy import deepcopy
+from functools import cache
 
 
 Nimply = namedtuple("Nimply", "row, num_objects")
@@ -72,7 +74,7 @@ def nim_sum(state: Nim) -> int:
     *_, result = accumulate(state.rows, operator.xor)
     return result
 
-
+@cache
 def brute_force(state: Nim) -> dict:
     bf = list()
     data = dict()
@@ -117,7 +119,7 @@ def nim_sum(state: Nim) -> int:
     *_, result = accumulate(state.rows, operator.xor)
     return result
 
-
+@cache
 def cook_data(state: Nim) -> dict:
     data = dict()
     and_list = list()
@@ -349,3 +351,27 @@ def four_param_generalized(state: Nim) -> Nimply:
 #         "gamma": 11.554805573206878,
 #         "delta": 8.903361191261782,
 #     }
+
+@cache
+def cook_data_bf(state: Nim) -> dict:
+    # print(f"rows: {state.rows}")
+    bf = []
+    data = {}
+    possible_moves = [(r, o) for r, c in enumerate(state.rows) for o in range(1, c + 1)]
+    for m in possible_moves:
+        tmp = deepcopy(state)
+        tmp.nimming(m)
+        # bf.append(tmp)
+        bf.append((m, tmp))
+    data["brute_force"] = bf
+    data["possible_moves"] = possible_moves
+
+    return data
+
+def rl_agent(state: Nim) -> Nimply:
+    possibleStates = cook_data_bf(state)["brute_force"]
+    print(possibleStates)
+    G = json.load(open("policy.json"))
+    G = {tuple(int(i) for i in k): v for k, v in G.items()}
+    ply = max(((s[0], G[s[1].rows]) for s in possibleStates if s[1].rows in G), key=lambda i: i[1])[0]
+    return Nimply(ply[0], ply[1])

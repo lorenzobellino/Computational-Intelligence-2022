@@ -54,7 +54,7 @@ class Agent(object):
     def choose_action(self, state, allowedMoves):
         maxG = -10e15
         next_move = None
-    
+
         randomN = random.random()
         if randomN < self.random_factor:
             random.randint(0, len(allowedMoves) - 1)
