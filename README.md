@@ -32,7 +32,10 @@ For this lab i reviewed:
 - [Enrico Magliano](https://github.com/EnricoMagliano/computational-intelligence/) using github Issues, my review can be found [here](https://github.com/EnricoMagliano/computational-intelligence/issues/5)
 - [Peppepelle99](https://github.com/Peppepelle99/ComputationalIntel2022_303999) using github Issues, my review can be found [here](https://github.com/Peppepelle99/ComputationalIntel2022_303999/issues/3)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 99649d865d83955a21d5c05928ba300ea0d3e64a
 ### LAB3
 #### Solution
 The approach for the solution of **lab3** is explained in this [README](https://github.com/lorenzobellino/Computational-Intelligence-2022/blob/main/lab3/README.md)
